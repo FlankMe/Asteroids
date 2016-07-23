@@ -27,3 +27,6 @@ and returns:
 You can download it from [here][1].  
 
 <img src="Animation.gif" width="30%" />
+
+
+[1]: http://www.pygame.org/download.shtml
