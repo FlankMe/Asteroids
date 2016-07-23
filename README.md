@@ -26,7 +26,7 @@ and returns:
 * PyGame. I used version 1.9.2a0.  
 You can download it from [here][1].  
 
-<img src="Animation.gif" width="30%" />
+<img src="Animation.gif" width="60%" />
 
 
 [1]: http://www.pygame.org/download.shtml
