@@ -27,7 +27,7 @@ and returns:
 # Fix the screen's size. The screen will be a rectangle with sizes
 # (SCREEN_WIDTH) x (SCREEN_WIDTH + MARGIN_FOR_FONT)
 SCREEN_WIDTH = 504
-MARGIN_FOR_FONT = 35
+MARGIN_FOR_FONT = 36
 SCREEN_HEIGHT = SCREEN_WIDTH + MARGIN_FOR_FONT
 
 import pygame
@@ -39,9 +39,9 @@ import matplotlib as plt
 # Hyperparameters
 HUMAN_PLAYING = False
 ACTION_STEPS = 12   # Steps to observe before deciding next action
-PLAYER_SPEED = 2
-GOLD_SPEED = 2
-OBSTACLE_SPEED = 2
+PLAYER_SPEED = 3
+GOLD_SPEED = 6
+OBSTACLE_SPEED = 6
 REWARD_CATCHING_GOLD = 1.
 PLAYER_DIES_PENALTY = 0.
 PROB_OBJECT_SPAWNED = 0.03
@@ -61,7 +61,7 @@ if not HUMAN_PLAYING:
         HUMAN_PLAYING = True
 
 GAME_TITLE = 'Asteroids - dodge the asteroids (grey), catch the gold (yellow)'
-TPS = 100             
+TPS = 50             
 FRAME_WIDTH = 3
 FRAME_FROM_BORDER = 3
 
@@ -210,7 +210,7 @@ while running:
     gold_hits = pygame.sprite.spritecollide(player, gold_list, True)
 
     # If gold was caught by the player, then reward is distributed
-    if len(gold_hits) > 0:
+    if gold_hits:
         reward = REWARD_CATCHING_GOLD * len(gold_hits)
         player.score += reward
         inquire_the_agent = True
@@ -222,7 +222,7 @@ while running:
 
     # If the player hits an obstacle or the screen's border, it's game over
     # The scores are updated and the game is reset
-    if len(obstacle_hits) > 0 or not player.is_position_allowed():
+    if obstacle_hits or not player.is_position_allowed():
         last_score = player.score
         if max_score < player.score: 
             max_score = player.score
