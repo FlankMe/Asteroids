@@ -38,8 +38,8 @@ import matplotlib as plt
 
 # Hyperparameters
 HUMAN_PLAYING = False
-ACTION_STEPS = 12   # Steps to observe before deciding next action
-PLAYER_SPEED = 3
+ACTION_STEPS = 1   # Steps to observe before deciding next action
+PLAYER_SPEED = 6
 GOLD_SPEED = 6
 OBSTACLE_SPEED = 6
 REWARD_CATCHING_GOLD = 1.
@@ -83,7 +83,7 @@ class Player(Block):
     def __init__(self, colour=RED, width=30, height=18):
         Block.__init__(self, width, height)
         self.image.fill(colour)
-        self.rect.x = int((SCREEN_WIDTH/2 - width) / 6) * 6
+        self.rect.x = int((SCREEN_WIDTH/2 - width) / 6)*6
         self.rect.y = SCREEN_HEIGHT - height - 18
         self.score = 0
         self.speed = [+PLAYER_SPEED, 0]
@@ -195,7 +195,8 @@ while running:
                         FRAME_FROM_BORDER + FRAME_WIDTH))
 
     # Generate obstacles and golden coins randomly
-    if np.random.uniform() < PROB_OBJECT_SPAWNED:
+    if ((not obstacle_list and not gold_list) or
+        np.random.uniform() < PROB_OBJECT_SPAWNED):    
         if np.random.uniform() < PROB_GOLD_SPAWNED:
             gold = Gold()
             gold_list.add(gold)
