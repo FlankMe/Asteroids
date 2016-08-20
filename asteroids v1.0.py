@@ -18,7 +18,7 @@ that accepts:
     - reward: float, reward received at that particular state;
     - is_terminal: bool, indicates if the player is at a terminal state;
 and returns:
-    - (+1) for right move and (-1) for left move;
+    - (+1) for right move, (0) for no move, and (-1) for left move;
 4) implement a method self.close() that clears the graph of Tensorflow.
 
 @author: Riccardo Rossi
