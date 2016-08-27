@@ -34,19 +34,19 @@ import pygame
 import time
 import numpy as np
 np.random.seed(int(time.time()))
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Hyperparameters
 HUMAN_PLAYING = False
-ACTION_STEPS = 1   # Steps to observe before deciding next action
+ACTION_STEPS = 4   # Steps to observe before deciding next action
 PLAYER_SPEED = 6
 GOLD_SPEED = 6
 OBSTACLE_SPEED = 6
 REWARD_CATCHING_GOLD = 1.
 PLAYER_DIES_PENALTY = 0.
-PROB_OBJECT_SPAWNED = 0.03
+PROB_OBJECT_SPAWNED = 0.12
 # Probability gold is spawned conditional to an object being spawned
-PROB_GOLD_SPAWNED = 0.6
+PROB_GOLD_SPAWNED = 0.8
 
 # Try to import Tensorflow and initialize the CNN agent
 # If unsuccessful, it sets the game as played by a human
@@ -61,7 +61,7 @@ if not HUMAN_PLAYING:
         HUMAN_PLAYING = True
 
 GAME_TITLE = 'Asteroids - dodge the asteroids (grey), catch the gold (yellow)'
-TPS = 50             
+TPS = 100             
 FRAME_WIDTH = 3
 FRAME_FROM_BORDER = 3
 
@@ -259,7 +259,7 @@ while running:
         action = agent.choose_action(image, reward, is_terminal)
         
         inquire_the_agent = False
-        reward = 0
+        reward = 0.0
 
     player.speed = [+PLAYER_SPEED * action, 0]
 
